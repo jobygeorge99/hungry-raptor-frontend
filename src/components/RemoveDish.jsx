@@ -14,6 +14,18 @@ const RemoveDish = () => {
 
     useEffect(()=>{getData()},[])
 
+    const deleteData = (id)=>{
+        console.log(id)
+        axios.post("http://localhost:3001/api/admin/removeDish",id).then((response)=>{
+            console.log(response.data)
+            if(response.data.status == "success"){
+                alert("Successfully removed")
+            }else{
+                alert("Something went wrong!")
+            }
+        })
+    }
+
   return (
     <div>
         <NavBar/>
@@ -30,7 +42,7 @@ const RemoveDish = () => {
                                             <div className="card-body">
                                                 <h5 className="card-title">{value.name}</h5>
                                                 <p className="card-text">Price: {value.price}</p>
-                                                <a href="#" className="btn btn-danger">Remove</a>
+                                                <button className="btn btn-danger" onClick={() => deleteData(value._id)}>Remove</button>
                                             </div>
                                         </div>
                                     </div>
