@@ -16,9 +16,11 @@ const RemoveDish = () => {
 
     const deleteData = (id)=>{
         console.log(id)
-        axios.post("http://localhost:3001/api/admin/removeDish",id).then((response)=>{
+        let data = { "_id": id }
+        axios.post("http://localhost:3001/api/admin/removeDish",data).then((response)=>{
             console.log(response.data)
             if(response.data.status == "success"){
+                getData()
                 alert("Successfully removed")
             }else{
                 alert("Something went wrong!")
@@ -38,7 +40,7 @@ const RemoveDish = () => {
                         data.map((value,index)=>{
                             return <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
                                         <div className="card">
-                                            <img height="350px" width="350px" src={value.image} className="card-img-top" alt="..."/>
+                                            <img height="350px" width="350px" src={value.image} className="card-img-top" alt="Image Missing!"/>
                                             <div className="card-body">
                                                 <h5 className="card-title">{value.name}</h5>
                                                 <p className="card-text">Price: {value.price}</p>
