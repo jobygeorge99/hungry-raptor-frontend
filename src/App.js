@@ -5,7 +5,7 @@ import AddDish from './components/AddDish';
 import RemoveDish from './components/RemoveDish';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-
+import PendingOrders from './components/PendingOrders';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
           <Route path='/removeDish' element={<RemoveDish/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<SignUp/>} />
+          <Route path='/pendingOrders' element={<PendingOrders/>}/>
         </Routes>
       </BrowserRouter>
     </div>
