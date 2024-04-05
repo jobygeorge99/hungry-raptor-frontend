@@ -21,9 +21,9 @@ const Login = () => {
     const readValues = ()=>{
 
         console.log(input)
-        axios.post("",input).then((response)=>{
+        axios.post("http://localhost:3001/api/user/login",input).then((response)=>{
             console.log(response.data)
-            if(response.data.sttus == "invalid"){
+            if(response.data.status == "invalid username/password"){
                 alert("Invalid Username or Password!")
                 setInput(
                     {
@@ -32,8 +32,8 @@ const Login = () => {
                     }
                 )
             }else{
-                console.log(response.data.userData._id)
-                sessionStorage.setItem("userId",response.data.userData._id)
+                console.log("line 35:",response.data._id)
+                sessionStorage.setItem("userId",response.data._id)
                 navigate("/")
             }
         })
@@ -50,11 +50,11 @@ const Login = () => {
                         <div className="row g-3 text-center">
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <label htmlFor="" className="form-label">Email</label>
-                                <input type="text" className="form-control" name='name' value={input.name} />
+                                <input type="text" className="form-control" name='email' value={input.email} onChange={inputHandler} />
                             </div>
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <label htmlFor="" className="form-label">Password</label>
-                                <input type="text" className="form-control" name='password' value={input.password} />
+                                <input type="text" className="form-control" name='password' value={input.password} onChange={inputHandler} />
                             </div>
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <button className="btn btn-success" onClick={readValues}>Login</button>
