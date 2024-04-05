@@ -43,6 +43,7 @@ const Login = () => {
     <div>
         <NavBar/>
         <div className="container">
+
             <div className="row g-3 justify-content-center mt-5">
                 <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
 
