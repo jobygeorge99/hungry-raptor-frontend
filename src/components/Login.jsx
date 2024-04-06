@@ -33,7 +33,15 @@ const Login = () => {
                 )
             }else{
                 console.log("line 35:",response.data._id)
-                sessionStorage.setItem("userId",response.data._id)
+
+                const session = {
+                    "userId":response.data._id,
+                    "name":response.data.name,
+                    "role":response.data.role
+                }
+                const sessionString = JSON.stringify(session);
+                sessionStorage.setItem('userData',sessionString)
+                console.log(sessionStorage)
                 navigate("/")
             }
         })
@@ -55,7 +63,7 @@ const Login = () => {
                             </div>
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <label htmlFor="" className="form-label">Password</label>
-                                <input type="text" className="form-control" name='password' value={input.password} onChange={inputHandler} />
+                                <input type="password" className="form-control" name='password' value={input.password} onChange={inputHandler} />
                             </div>
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <button className="btn btn-success" onClick={readValues}>Login</button>
