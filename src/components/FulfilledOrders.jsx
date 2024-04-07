@@ -2,12 +2,12 @@ import React,{useEffect,useState} from 'react'
 import NavBar from './NavBar'
 import axios from 'axios'
 
-const PendingOrders = () => {
+const FulfilledOrders = () => {
 
     const [data,setData] = new useState([])
 
     const getData = ()=>{
-        axios.get("http://localhost:3001/api/admin/pendingOrders").then((response)=>{
+        axios.get("http://localhost:3001/api/admin/fulfilledOrders").then((response)=>{
             setData(response.data)
         })
     } 
@@ -21,7 +21,7 @@ const PendingOrders = () => {
             <div className="row">
                 <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
 
-                    <h3>Pending Orders</h3>
+                    <h3>Fulfilled Orders</h3>
                     <table class="table table-info">
                         <thead>
                             <tr>
@@ -58,4 +58,4 @@ const PendingOrders = () => {
   )
 }
 
-export default PendingOrders
+export default FulfilledOrders
