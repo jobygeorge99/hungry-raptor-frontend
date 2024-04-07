@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import NavBar from './NavBar'
+import AdminNavBar from './AdminNavBar'
 import axios from 'axios'
 
 
@@ -40,7 +40,7 @@ const AddDish = () => {
 
   return (
     <div>
-        <NavBar/>
+        <AdminNavBar/>
         <div className="container">
             <div className="row">
 

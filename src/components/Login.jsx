@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import NavBar from './NavBar'
+import AdminNavBar from './AdminNavBar'
 import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -49,7 +49,7 @@ const Login = () => {
 
   return (
     <div>
-        <NavBar/>
+        <AdminNavBar/>
         <div className="container">
 
             <div className="row g-3 justify-content-center mt-5">

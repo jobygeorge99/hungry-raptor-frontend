@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import NavBar from './NavBar'
+import AdminNavBar from './AdminNavBar'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -49,7 +49,7 @@ const SignUp = () => {
   return (
     <div>
         
-        <NavBar/>
+        <AdminNavBar/>
         <div className="container">
             <div className="row">
                 <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
