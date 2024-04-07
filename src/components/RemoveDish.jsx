@@ -7,17 +7,18 @@ const RemoveDish = () => {
     const [data,setData] = new useState([])
 
     const getData = ()=>{
-        axios.get("http://localhost:3001/api/admin/viewOrders").then((response)=>{
+        axios.get("http://localhost:3001/api/user/viewMenu").then((response)=>{
             setData(response.data)
+            console.log(response.data)
         })
     }
 
     useEffect(()=>{getData()},[])
 
-    const deleteData = (id)=>{
-        console.log(id)
-        let data = { "_id": id }
-        axios.post("http://localhost:3001/api/admin/removeDish",data).then((response)=>{
+    const deleteData = (inputId)=>{
+        console.log(inputId)
+        let id = { "_id": inputId }
+        axios.post("http://localhost:3001/api/admin/removeDish",id).then((response)=>{
             console.log(response.data)
             if(response.data.status == "success"){
                 getData()
@@ -38,7 +39,7 @@ const RemoveDish = () => {
                     <div className="row g-3">
                     {
                         data.map((value,index)=>{
-                            return <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                            return <div key={value._id} className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
                                         <div className="card">
                                             <img height="350px" width="350px" src={value.image} className="card-img-top" alt="Image Missing!"/>
                                             <div className="card-body">
