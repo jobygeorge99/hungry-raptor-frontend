@@ -49,7 +49,7 @@ const Login = () => {
 
   return (
     <div>
-        <AdminNavBar/>
+        {/* <AdminNavBar/> */}
         <div className="container">
 
             <div className="row g-3 justify-content-center mt-5">
