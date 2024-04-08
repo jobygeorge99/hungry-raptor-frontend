@@ -7,6 +7,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PendingOrders from './components/PendingOrders';
 import FulfilledOrders from './components/FulfilledOrders';
+import ViewMenu from './components/userScreens/ViewMenu';
 
 function App() {
   return (
@@ -19,6 +20,11 @@ function App() {
           <Route path='/signup' element={<SignUp/>} />
           <Route path='/pendingOrders' element={<PendingOrders/>}/>
           <Route path='/FulfilledOrders' element={<FulfilledOrders/>}/>
+          
+          {/* user screens */}
+          <Route path='/viewMenu' element={<ViewMenu/>} />
+          {/* <Route path='/viewCart' element={</>} />
+          <Route path='/myOrders' element={</>} /> */}
         </Routes>
       </BrowserRouter>
     </div>
