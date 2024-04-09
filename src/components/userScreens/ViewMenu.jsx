@@ -14,9 +14,24 @@ const ViewMenu = () => {
       })
   }
 
-  const addToCart = ()=>{
+  let quantityArray = {}
 
-  }
+  const appendToQuantity = (dishId, quantity) => {
+    console.log(`Item ID: ${dishId}, Quantity: ${quantity}`);
+    quantityArray[dishId] = quantity
+  };
+
+  const  addToCart= (dishId) => {
+    console.log(quantityArray)
+    axios.post("http://localhost:3001/api/user/addToCart",quantityArray).then((response)=>{
+      if(response.data.status == "success"){
+        alert("Added to Cart")
+      }else{
+          alert("Something went wrong!")
+      }
+    })
+    
+  };
 
   useEffect(()=>{getData()},[])
 
@@ -36,11 +51,8 @@ const ViewMenu = () => {
                                       <div class="card-body">
                                         <h5 className="card-title">{value.name}</h5>
                                         <p className="card-text">Price: {value.price}</p>
-                                        <div className="div mb-2"> <QuantityPicker min={0} max={10} /> </div>
-                                        <div>
-                                          {console.log(this.State.value)}
-                                        </div>
-                                        <div className="btn btn-primary d-flex justify-content-center" onClick={ ()=>addToCart(value._id) } > Add to Cart </div>
+                                        <div className="div mb-2"> <QuantityPicker min={0} max={10} onQuantityChange={(quantity) => appendToQuantity(value._id, quantity)} /> </div>
+                                        <div className="btn btn-primary d-flex justify-content-center" onClick={() => addToCart(value._id)} > Add to Cart </div>
                                       </div>
                                     </div>
                                   </div>
