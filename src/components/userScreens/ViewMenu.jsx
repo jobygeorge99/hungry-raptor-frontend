@@ -23,7 +23,16 @@ const ViewMenu = () => {
 
   const  addToCart= (dishId) => {
     console.log(quantityArray)
-    axios.post("http://localhost:3001/api/user/addToCart",quantityArray).then((response)=>{
+    const userDataString = sessionStorage.getItem('userData');
+    const userData = JSON.parse(userDataString);
+    let id = userData.userId
+    let dishDetails = { 
+      "userId":id,
+      "dishId":dishId,
+      "count":quantityArray[dishId]
+     }
+    console.log(dishDetails)
+    axios.post("http://localhost:3001/api/user/addToCart",dishDetails).then((response)=>{
       if(response.data.status == "success"){
         alert("Added to Cart")
       }else{

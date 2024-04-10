@@ -29,13 +29,13 @@ const UserNavBar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">View Menu</Link>
+              <Link className="nav-link active" aria-current="page" to="/viewMenu">View Menu</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/removeDish">View Cart</Link>
+              <Link className="nav-link" to="/viewCart">View Cart</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/pendingOrders">My Orders</Link>
+              <Link className="nav-link" to="/">My Orders</Link>
             </li>
             <li className="nav-item">
               <span className="nav-link logout-link" onClick={ logOutAction } > Log Out </span>
