@@ -28,7 +28,7 @@ const AdminNavBar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Add Dish</Link>
+              <Link className="nav-link active" aria-current="page" to="/addDish">Add Dish</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/removeDish">Remove Dish</Link>

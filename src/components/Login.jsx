@@ -42,7 +42,7 @@ const Login = () => {
                 sessionStorage.setItem('userData',sessionString)
                 console.log(sessionStorage)
                 if(response.data.role == "1"){
-                    navigate("/")
+                    navigate("/addDish")
                 }else{
                     navigate("/viewMenu")
                 }
