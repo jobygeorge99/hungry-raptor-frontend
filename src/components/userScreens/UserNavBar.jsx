@@ -1,22 +1,23 @@
 import React,{ useEffect } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 
-const AdminNavBar = () => {
 
-  let navigate = useNavigate()
+const UserNavBar = () => {
 
-  const logOutAction = ()=>{
-    sessionStorage.clear()
-    navigate("/login")
-  }
+    let navigate = useNavigate()
 
-  useEffect(()=>{
-    let userDataString = sessionStorage.getItem("userData")
-    let userData = JSON.parse(userDataString);
-    if (!userData || !userData.userId){
+    const logOutAction = ()=>{
+      sessionStorage.clear()
       navigate("/login")
     }
-  },[])
+  
+    useEffect(()=>{
+      let userDataString = sessionStorage.getItem("userData")
+      let userData = JSON.parse(userDataString);
+      if (!userData || !userData.userId){
+        navigate("/login")
+      }
+    },[])
 
   return (
     <nav className="navbar navbar-expand-lg bg-info mb-3">
@@ -28,16 +29,13 @@ const AdminNavBar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/addDish">Add Dish</Link>
+              <Link className="nav-link active" aria-current="page" to="/viewMenu">View Menu</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/removeDish">Remove Dish</Link>
+              <Link className="nav-link" to="/viewCart">View Cart</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/pendingOrders">Pending Orders</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/FulfilledOrders">Fulfilled Orders</Link>
+              <Link className="nav-link" to="/">My Orders</Link>
             </li>
             <li className="nav-item">
               <span className="nav-link logout-link" onClick={ logOutAction } > Log Out </span>
@@ -50,4 +48,4 @@ const AdminNavBar = () => {
   )
 }
 
-export default AdminNavBar
+export default UserNavBar

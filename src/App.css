@@ -37,6 +37,12 @@
   }
 }
 
+
+/* Logout Pointer */
 .logout-link {
   cursor: pointer;
 }
+
+/* .card { flex: 0 0 100%; } */
+
+

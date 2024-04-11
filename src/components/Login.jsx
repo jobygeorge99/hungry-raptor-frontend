@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import AdminNavBar from './AdminNavBar'
 import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -42,7 +41,12 @@ const Login = () => {
                 const sessionString = JSON.stringify(session);
                 sessionStorage.setItem('userData',sessionString)
                 console.log(sessionStorage)
-                navigate("/")
+                if(response.data.role == "1"){
+                    navigate("/addDish")
+                }else{
+                    navigate("/viewMenu")
+                }
+                
             }
         })
     }
