@@ -33,6 +33,7 @@ const ViewCart = () => {
   useEffect(()=>{getData()},[])
 
   const [amount, setamount] = useState('');
+  const [txnId, settxnId] = useState('');
 
   const handleSubmit = (e)=>{
     e.preventDefault();
@@ -50,6 +51,9 @@ const ViewCart = () => {
         handler: function(response){
           alert("Success");
           console.log(response.razorpay_payment_id)
+          let razorPayTxnId = response.razorpay_payment_id
+          settxnId(razorPayTxnId)
+          paymentSuccess()
         },
         prefill: {
           name:"",
@@ -68,9 +72,36 @@ const ViewCart = () => {
     }
   }
 
+  const [orderData,setorderData] = new useState(
+    {
+      "customerId": userId,
+      "transactionId": txnId,
+      "orderstatus": "notServed"
+    }
+  )
+
   const paymentSuccess = ()=>{
 
-    axios.post("http://localhost:3001/api/user/place_order")
+    axios.post("http://localhost:3001/api/user/place_order",orderData).then((response)=>{
+
+      if(response.data.status === "success"){
+
+        alert("Order placed successfully")
+        navigate("/viewMenu")
+      }
+      else {
+        alert("Something went wrong ...")
+      }
+
+      setorderData(
+        {
+          "customerId": "",
+          "transactionId": "",
+          "orderstatus": ""
+        }
+      )
+
+    })
   }
 
 
