@@ -22,14 +22,57 @@ const ViewCart = () => {
   }
 
   const findAmount = (data) => {
-    let amount = 0;
+    let sum = 0;
     for (const item of data) {
-      amount += parseInt(item.dishId.price);
+      sum += parseInt(item.dishId.price);
     }
-    setTotalAmount(amount); // Update totalAmount using useState
+    setTotalAmount(sum); // Update totalAmount using useState
+    setamount(sum)
   };
 
   useEffect(()=>{getData()},[])
+
+  const [amount, setamount] = useState('');
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    if(amount === ""){
+      alert("Amount not present !");
+    }
+    else{
+      var options = {
+        key: "rzp_test_AszvNUfgcpmdKq",
+        key_secret:"5c2rkenfZmbS8osMLFib8Col",
+        amount: amount *100,
+        currency:"INR",
+        name:"STARTUP_PROJECTS",
+        description:"for testing purpose",
+        handler: function(response){
+          alert("Success");
+          console.log(response.razorpay_payment_id)
+        },
+        prefill: {
+          name:"",
+          email:"jobygeorge99@gmail.com",
+          contact:""
+        },
+        notes:{
+          address:"Razorpay Corporate office"
+        },
+        theme: {
+          color:"#3399cc"
+        }
+      }
+      var pay = new window.Razorpay(options);
+      pay.open();
+    }
+  }
+
+  const paymentSuccess = ()=>{
+
+    axios.post("http://localhost:3001/api/user/place_order")
+  }
+
 
   return (
     <div>
@@ -62,7 +105,7 @@ const ViewCart = () => {
                Total Amount : { totalAmount }
               </div>
               <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 d-flex d-flex justify-content-center">
-               <div className="btn btn-success">Make Payment</div> 
+               <div className="btn btn-success" onClick={handleSubmit}>Make Payment</div> 
               </div>
               <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 d-flex d-flex justify-content-center">
                
@@ -76,5 +119,6 @@ const ViewCart = () => {
     </div>
   )
 }
+
 
 export default ViewCart
