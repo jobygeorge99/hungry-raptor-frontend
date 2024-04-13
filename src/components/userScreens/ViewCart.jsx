@@ -81,7 +81,7 @@ const ViewCart = () => {
   const paymentSuccess = (txnId)=>{
 
     const orderData = {
-                        "customerId": userId.userId,
+                        "userId": userId.userId,
                         "transactionId": txnId,
                         "orderstatus": "notServed"
                       }

@@ -21,14 +21,16 @@ const ViewMenu = () => {
     quantityArray[dishId] = quantity
   };
 
-  const  addToCart= (dishId) => {
+  const  addToCart= (dishId,dishName) => {
     console.log(quantityArray)
     const userDataString = sessionStorage.getItem('userData');
     const userData = JSON.parse(userDataString);
     let id = userData.userId
+
     let dishDetails = { 
       "userId":id,
       "dishId":dishId,
+      "dishName":dishName,
       "count":quantityArray[dishId]
      }
     console.log(dishDetails)
@@ -61,7 +63,7 @@ const ViewMenu = () => {
                                         <h5 className="card-title">{value.name}</h5>
                                         <p className="card-text">Price: {value.price}</p>
                                         <div className="div mb-2"> <QuantityPicker min={0} max={10} onQuantityChange={(quantity) => appendToQuantity(value._id, quantity)} /> </div>
-                                        <div className="btn btn-primary d-flex justify-content-center" onClick={() => addToCart(value._id)} > Add to Cart </div>
+                                        <div className="btn btn-primary d-flex justify-content-center" onClick={() => addToCart(value._id,value.name)} > Add to Cart </div>
                                       </div>
                                     </div>
                                   </div>
