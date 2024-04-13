@@ -1,9 +1,12 @@
 import React,{ useEffect,useState } from 'react'
 import UserNavBar from './UserNavBar'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const ViewCart = () => {
 
+  const navigate = useNavigate()
+  
   const [data,setData] = new useState([])
   const [totalAmount, setTotalAmount] = useState(0);
   const userDataString = sessionStorage.getItem('userData');
@@ -33,7 +36,6 @@ const ViewCart = () => {
   useEffect(()=>{getData()},[])
 
   const [amount, setamount] = useState('');
-  const [txnId, settxnId] = useState('');
 
   const handleSubmit = (e)=>{
     e.preventDefault();
@@ -52,8 +54,10 @@ const ViewCart = () => {
           alert("Success");
           console.log(response.razorpay_payment_id)
           let razorPayTxnId = response.razorpay_payment_id
-          settxnId(razorPayTxnId)
-          paymentSuccess()
+          if(razorPayTxnId){
+            paymentSuccess(razorPayTxnId)
+          }
+          
         },
         prefill: {
           name:"",
@@ -72,16 +76,16 @@ const ViewCart = () => {
     }
   }
 
-  const [orderData,setorderData] = new useState(
-    {
-      "customerId": userId,
-      "transactionId": txnId,
-      "orderstatus": "notServed"
-    }
-  )
+  
 
-  const paymentSuccess = ()=>{
+  const paymentSuccess = (txnId)=>{
 
+    const orderData = {
+                        "customerId": userId.userId,
+                        "transactionId": txnId,
+                        "orderstatus": "notServed"
+                      }
+    
     axios.post("http://localhost:3001/api/user/place_order",orderData).then((response)=>{
 
       if(response.data.status === "success"){
@@ -92,14 +96,6 @@ const ViewCart = () => {
       else {
         alert("Something went wrong ...")
       }
-
-      setorderData(
-        {
-          "customerId": "",
-          "transactionId": "",
-          "orderstatus": ""
-        }
-      )
 
     })
   }
