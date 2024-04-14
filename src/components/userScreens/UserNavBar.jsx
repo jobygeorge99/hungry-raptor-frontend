@@ -35,7 +35,7 @@ const UserNavBar = () => {
               <Link className="nav-link" to="/viewCart">View Cart</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">My Orders</Link>
+              <Link className="nav-link" to="/myOrders">My Orders</Link>
             </li>
             <li className="nav-item">
               <span className="nav-link logout-link" onClick={ logOutAction } > Log Out </span>
