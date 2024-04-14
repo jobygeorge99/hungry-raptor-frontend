@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { Html5QrcodeScanner } from 'html5-qrcode'
+import AdminNavBar from './AdminNavBar'
 
 const QRCodeScanner = () => {
 
@@ -33,7 +34,8 @@ const QRCodeScanner = () => {
 
   return (
     <div>
-        <h1>QR Code Scanning</h1>
+        <AdminNavBar/>
+        <h4>QR Code Scanning</h4>
         {
             scanResult
             ? <div> Success: {scanResult} </div>

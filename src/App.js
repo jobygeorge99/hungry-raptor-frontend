@@ -10,12 +10,12 @@ import FulfilledOrders from './components/FulfilledOrders';
 import ViewMenu from './components/userScreens/ViewMenu';
 import ViewCart from './components/userScreens/ViewCart';
 import ViewMyOrders from './components/userScreens/ViewMyOrders';
-import ScanQR from './components/ScanQR';
 import QRCodeScanner from './components/QRCodeScanner';
 
 function App() {
   return (
     <div>
+
       <BrowserRouter>
         <Routes>
           <Route path='/addDish' element={<AddDish/>} />
