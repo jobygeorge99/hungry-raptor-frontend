@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import UserNavBar from './UserNavBar'
 import axios from 'axios'
+import QRModal from './QRModal'
 
 const ViewMyOrders = () => {
+
+    const [txnId, setTxnId] = useState('');
 
     const [data,setData] = new useState([])
 
@@ -16,6 +19,10 @@ const ViewMyOrders = () => {
         setData(response.data)
         })
     } 
+
+    const parentToChild = (value) => {
+        setTxnId(value);
+    }
 
     useEffect(()=>{ getData() }, [] )
 
@@ -36,6 +43,7 @@ const ViewMyOrders = () => {
                             <th scope="col">Dish & Count</th>
                             <th scope="col">Order Date</th>
                             <th scope="col">Order Status</th>
+                            <th scope="col">QR</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,6 +56,12 @@ const ViewMyOrders = () => {
                                     <td>{value[0].details.map(detail => `${detail.dishName} (${detail.count})`).join(', ')}</td>
                                     <td>{value[0].date}</td>
                                     <td>{value[0].orderStatus}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={ ()=>parentToChild(value[0].transactionId) } >
+                                        View QR
+                                        </button>
+                                        <QRModal parentToChild={txnId} />
+                                    </td>
                                     </tr>
                                 })
                             }
