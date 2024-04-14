@@ -40,6 +40,9 @@ const AdminNavBar = () => {
               <Link className="nav-link" to="/FulfilledOrders">Fulfilled Orders</Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" to="/scanQR">Scan Orders</Link>
+            </li>
+            <li className="nav-item">
               <span className="nav-link logout-link" onClick={ logOutAction } > Log Out </span>
             </li>
           </ul>
