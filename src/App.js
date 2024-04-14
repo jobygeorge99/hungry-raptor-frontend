@@ -10,6 +10,7 @@ import FulfilledOrders from './components/FulfilledOrders';
 import ViewMenu from './components/userScreens/ViewMenu';
 import ViewCart from './components/userScreens/ViewCart';
 import ViewMyOrders from './components/userScreens/ViewMyOrders';
+import ScanQR from './components/ScanQR';
 
 function App() {
   return (
@@ -19,9 +20,11 @@ function App() {
           <Route path='/addDish' element={<AddDish/>} />
           <Route path='/removeDish' element={<RemoveDish/>} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/' element={<Login/>} />
           <Route path='/signup' element={<SignUp/>} />
           <Route path='/pendingOrders' element={<PendingOrders/>}/>
           <Route path='/FulfilledOrders' element={<FulfilledOrders/>}/>
+          <Route path='/scanQR' element={<ScanQR/>} />
           
           {/* user screens */}
           <Route path='/viewMenu' element={<ViewMenu/>} />
