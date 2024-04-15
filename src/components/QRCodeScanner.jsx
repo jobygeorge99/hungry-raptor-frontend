@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { Html5QrcodeScanner } from 'html5-qrcode'
 import AdminNavBar from './AdminNavBar'
+import axios from 'axios'
 
 const QRCodeScanner = () => {
 
@@ -21,6 +22,15 @@ const QRCodeScanner = () => {
         function success(result){
             scanner.clear()
             setScanResult(result)
+            console.log(result)
+            let str = {
+                "transactionId":result
+            }
+            axios.post("http://localhost:3001/api/admin/serveFood",str).then((response)=>{
+                if(response){
+                    alert("Successfully served")
+                }
+            })
         }
     
         function error(err){

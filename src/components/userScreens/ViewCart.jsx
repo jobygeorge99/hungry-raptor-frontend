@@ -27,7 +27,7 @@ const ViewCart = () => {
   const findAmount = (data) => {
     let sum = 0;
     for (const item of data) {
-      sum += parseInt(item.dishId.price);
+      sum += parseInt(item.dishId.price * item.count);
     }
     setTotalAmount(sum); // Update totalAmount using useState
     setamount(sum)

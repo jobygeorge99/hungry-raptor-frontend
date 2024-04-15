@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import AdminNavBar from './AdminNavBar'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import LoginNavBar from './LoginNavBar'
 
 
 const SignUp = () => {
@@ -48,7 +49,7 @@ const SignUp = () => {
 
   return (
     <div>
-        
+        <LoginNavBar/>
         <div className="container">
             <div className="row">
                 <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -72,7 +73,7 @@ const SignUp = () => {
                             <label htmlFor="" className="form-label">Confirm Password</label>
                             <input type="password" className="form-control" name='confirmPassword' onChange={inputHandler} />
                         </div> */}
-                        <div className="col col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 col-xxl-12">
+                        <div className="col col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-center">
                             <button className="btn btn-success" onClick={sendValues}>Sign Up</button>
                         </div>
                     </div>

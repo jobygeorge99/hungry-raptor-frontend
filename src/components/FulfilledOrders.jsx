@@ -27,8 +27,7 @@ const FulfilledOrders = () => {
                             <tr>
                             <th scope="col">Sl.No.</th>
                             <th scope="col">Customer Name</th>
-                            <th scope="col">Dish</th>
-                            <th scope="col">Count</th>
+                            <th scope="col">Dish & Count</th>
                             <th scope="col">Order Date</th>
                             <th scope="col">Order Status</th>
                             </tr>
@@ -39,11 +38,10 @@ const FulfilledOrders = () => {
                                 data.map((value,index)=>{
                                     return <tr>
                                     <th scope="row">{index+1}</th>
-                                    <td>{}</td>
-                                    <td>{value.dishName}</td>
-                                    <td>{value.count}</td>
-                                    <td>{value.date}</td>
-                                    <td>{value.orderStatus}</td>
+                                    <td>{value[0].name}</td>
+                                    <td>{value[0].details.map(detail => `${detail.dishName} (${detail.count})`).join(', ')}</td>
+                                    <td>{value[0].date}</td>
+                                    <td>{value[0].orderStatus}</td>
                                     </tr>
                                 })
                             }

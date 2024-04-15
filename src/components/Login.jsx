@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import LoginNavBar from './LoginNavBar'
 
 const Login = () => {
 
@@ -53,7 +54,7 @@ const Login = () => {
 
   return (
     <div>
-        {/* <AdminNavBar/> */}
+        <LoginNavBar/>
         <div className="container">
 
             <div className="row g-3 justify-content-center mt-5">
