@@ -21,13 +21,31 @@ const QRCodeScanner = () => {
     
         function success(result){
             scanner.clear()
-            setScanResult(result)
+            
             console.log(result)
             let str = {
                 "transactionId":result
             }
             axios.post("http://localhost:3001/api/admin/serveFood",str).then((response)=>{
+                console.log(response.data)
+                // setScanResult(response) //set the food name and count in brackets here.
                 if(response){
+
+                    const foodData = response.data; // Assuming response.data contains the JSON array
+
+                    let displayText = "";
+                    if (foodData.length > 0) {
+                        displayText = "Successfully served: ";
+                        foodData.forEach((item) => {
+                            displayText += `${item.dishName} (${item.count}), `;
+                        });
+                        // Remove the trailing comma and space
+                        displayText = displayText.slice(0, -2);
+                    } else {
+                        displayText = "No food items found in the order.";
+                    }
+
+                    setScanResult(displayText);
                     alert("Successfully served")
                 }
             })
